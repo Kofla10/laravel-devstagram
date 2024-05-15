@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/create-account', [RegisterController::class, 'create']);
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
+
 Route::get('/authenticate', [RegisterController::class, 'authenticate']);
 

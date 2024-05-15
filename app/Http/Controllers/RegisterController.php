@@ -7,7 +7,26 @@ use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     //
-    public function create() {
+    public function index() {
         return view('auth.register');
+    }
+
+    public static function store(Request $request){
+        //muestra toda la información que viene del formulario
+        // dd($request);
+        //muestra solo el campo que especificamos
+        // dd($request->get('username'));
+
+        //realizar la validación del formulario
+        // $this->validate($request, [
+        //     'name'     => 'required',
+        //     // 'username' => ['required', 'min:4', 'unique:users']
+        // ]);
+
+        // tomamos el request para realizar la validación
+        $request->validate([
+            'name'     => ['required', 'min:3'],
+            'username' => ['required', 'min:3']
+        ]);
     }
 }
