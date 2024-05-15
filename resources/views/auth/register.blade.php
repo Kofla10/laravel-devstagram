@@ -66,7 +66,12 @@
                         id="email"
                         name="email"
                         placeholder="Tu Correo"
-                        class="border p-3 w-full rounded-2xl">
+                        value= "{{old('email')}}"
+                        class="border p-3 w-full rounded-2xl @error('email') border-red-400  @enderror">
+
+                        @error('email')
+                            <p class="text-center font-medium text-white bg-red-400 mt-1 p-2 rounded-2xl shadow-sm">{{$message}}</p>
+                        @enderror
                 </div>
 
                 <div class="mb-5">
@@ -80,7 +85,11 @@
                         id="password"
                         name="password"
                         placeholder="Contraseña de Registro"
-                        class="border p-3 w-full rounded-2xl">
+                        class="border p-3 w-full rounded-2xl @error('password') border-red-400 @enderror">
+
+                        @error('password')
+                            <p class="bg-red-400 text-white font-medium p-2 mt-1 rounded-2xl shadow-2xl text-center">{{$message}}</p>
+                        @enderror
                 </div>
 
                 <div class="mb-5">
