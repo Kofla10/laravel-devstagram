@@ -28,7 +28,11 @@ class RegisterController extends Controller
             'name'     => ['required', 'min:3', 'max:35'],
             'username' => ['required', 'min:3', 'max:15', 'unique:users'],
             'email'    => ['required', 'email', 'unique:users', 'max:45'],
-            'password' => ['required']
+            // si se poner confirmed, lo que hace que la contraseña de confirmacion sea igual al password
+            'password' => ['required', 'confirmed', 'min:6']
         ]);
+
+        dd($request);
+
     }
 }
