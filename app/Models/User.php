@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
     ];
 
     /**
@@ -41,4 +42,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Indicar que estos campos son fechas
+    protected $dates = [
+        'created_at', 'updated_at', // Agrega cualquier otro campo de fecha
+    ];
+
 }

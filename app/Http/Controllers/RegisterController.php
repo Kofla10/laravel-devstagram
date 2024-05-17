@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -26,13 +27,21 @@ class RegisterController extends Controller
         // tomamos el request para realizar la validación
         $request->validate([
             'name'     => ['required', 'min:3', 'max:35'],
-            'username' => ['required', 'min:3', 'max:15', 'unique:users'],
-            'email'    => ['required', 'email', 'unique:users', 'max:45'],
+            'username' => ['required', 'min:3', 'max:15'],
+            'email'    => ['required', 'email', 'max:45'],
             // si se poner confirmed, lo que hace que la contraseña de confirmacion sea igual al password
-            'password' => ['required', 'confirmed', 'min:6']
+            'password' => ['required', 'confirmed', 'min:6'],
         ]);
 
+        
+        User::create([
+            'name'     => $request->name,
+            'username' => $request->username,
+            'email'    => $request->email,
+            'password' => $request->password
+        
+        ]);
+        
         dd($request);
-
     }
 }
