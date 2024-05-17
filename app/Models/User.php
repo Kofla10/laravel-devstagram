@@ -44,8 +44,8 @@ class User extends Authenticatable
     ];
 
     // Indicar que estos campos son fechas
-    protected $dates = [
-        'created_at', 'updated_at', // Agrega cualquier otro campo de fecha
-    ];
+    // protected $dates = [
+    //     'created_at', 'updated_at', // Agrega cualquier otro campo de fecha
+    // ];
 
 }
