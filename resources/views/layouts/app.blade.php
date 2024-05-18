@@ -16,18 +16,14 @@
                     Devstagram
                 </h1>
 
-                {{-- validamos si existe un usuario autenticado Auth()->user() --}}
-                {{-- @if (Auth()->user())
-
-                @else
-                    <p class="font-medium text-lg uppercase text-gray-400">inicia sesión</p>
-                @endif --}}
-
-                {{-- forma mas facil de validar si el usuario esta autenticado --}}
+                
                 @auth
-                <p class="font-medium text-lg uppercase text-gray-400">{{ Auth()->user()->username }}</p>
+                    <p class="font-medium text-lg uppercase text-gray-400">{{ Auth()->user()->username }}</p>
 
                     <nav class="flex gap-2 items-center">
+
+                        <a class="text-white text-sm uppercase font-bold shadow-gray-300 rounded-lg border bg-gray-500 p-1 px-2 gap-2" href="#">Crear</a>
+
                         <form action="{{ route('logout') }} "method="POST">
                             @csrf
                             <button class="font-bold uppercase text-gray-600 text-sm" href="{{ route('logout') }}">Cerrar Sesión</button>
@@ -43,13 +39,8 @@
                         <a class="font-bold uppercase text-gray-600 text-sm" href="{{route('register')}}">Crear Cuenta</a>
                     </nav>
                 @endguest
+                
 
-
-
-                {{-- <nav class="flex gap-2 items-center">
-                    <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('login') }}">Login</a>
-                    <a class="font-bold uppercase text-gray-600 text-sm" href="{{route('register')}}">Crear Cuenta</a>
-                </nav> --}}
             </div>
 
         </header>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,10 +13,12 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
-    public function index() {
-
+    public function index(User $user) {
+        
         //con el auth podemos validar si el usuario esta autenticado
         // dd(auth()->user());
-        return view('dashboard');
+        return view('dashboard',[
+            'user' => $user
+        ]);
     }
 }
