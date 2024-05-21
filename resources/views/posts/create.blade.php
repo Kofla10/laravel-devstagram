@@ -4,12 +4,18 @@
     Crea una Nueva Publicación
 @endsection
 
+@push('style')
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+@endpush
+
 @section('content')
     <div class="md:flex md:items-center">
 
         <div class="md:w-1/2 px-10">
             <!-- Example of a form that Dropzone can take over -->
-            <form enctype="multipart/form-data" method="POST" action="{{ route('imagens.store') }}" id="dropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center"></form>
+            <form enctype="multipart/form-data" method="POST" action="{{ route('imagens.store') }}" id="dropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center">
+                @csrf
+            </form>
         </div>
 
         <div class="md:w-1/2 bg-gray-50 p-5 rounded-lg shadow-lg mt-10 md:mt-0">
