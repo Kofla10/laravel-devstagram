@@ -21,8 +21,8 @@ class LoginController extends Controller
             //el back() es para regresar a la página anterio y el with() es para enviar el mensaje de error, 'mensaje' es el nombre con el que imprimimos el mensaje en la vista
             return back()->with('mensaje', 'Credenciales Incorrectas');
         }
-        
-        return redirect()->route('post.index');
+
+        return redirect()->route('post.index', auth()->user()->username);
 
     }
 }

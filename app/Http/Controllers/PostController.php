@@ -14,11 +14,15 @@ class PostController extends Controller
     }
 
     public function index(User $user) {
-        
         //con el auth podemos validar si el usuario esta autenticado
         // dd(auth()->user());
         return view('dashboard',[
             'user' => $user
         ]);
     }
+
+    public function create(){
+        return view('posts.create');
+    }
+
 }
