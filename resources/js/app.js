@@ -39,7 +39,6 @@ dropzone.on("success", function(file, response){
 dropzone.on("removedfile", function(){
     img.value = '';
     console.log('El archivo se elimino')
-   
 })
 
 //sending: para ver la información cuando se sube la imagen

@@ -11,6 +11,7 @@
         <div class="md:w-7/12 p-5">
             <img src="{{asset('imgs/login.jpg')}}" alt="">
         </div>
+        
         <div class="md:w-4/12 bg-gray-50 p-6 rounded-lg shadow-lg">
             {{-- ESPECIFICAMOS EL METODO POST, PARA QUE ENE --}}
             {{-- novalidate desactiva la validacion de html5 --}}
