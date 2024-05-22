@@ -17,8 +17,13 @@ class PostController extends Controller
     public function index(User $user) {
         //con el auth podemos validar si el usuario esta autenticado
         // dd(auth()->user());
+
+        //realizamo el where, para poder filtrar la información, se debe de poner el get() para que la consultra trainga los datos
+        $posts = Post::where('user_id', $user->id)->get();
+
         return view('dashboard',[
-            'user' => $user
+            'user'  => $user,
+            'posts' => $posts
         ]);
     }
 
@@ -34,12 +39,31 @@ class PostController extends Controller
             'imagen'      => 'required'
         ]);
 
-        Post::create([
+        // Post::create([
+        //     'title'       => $data->title,
+        //     'description' => $data->description,
+        //     'imagen'      => $data->imagen,
+        //     'user_id'     => auth()->user()->id
+        // ]);
+        
+        //otra forma de crear un registro
+        //creamos una instancia del modelo
+        // $post = new Post(); 
+        // //la información automaticamente se guarda en la base de datos        
+        // $post->title       = $data->title;
+        // $post->description = $data->description;
+        // $post->imagen      = $data->imagen;
+        // $post->user_id     = auth()->user()->id;
+
+        //Creamos un inser usando las relaciones que se crearon
+        //usamos la data, como tenemos un usario autenticado usamos el uses, seleccionamos la relacion que creamos y luedo el metodo create, es similiar a la primera forma que usamos para realizar el insert
+        $data->user()->posts()->create([
             'title'       => $data->title,
             'description' => $data->description,
             'imagen'      => $data->imagen,
             'user_id'     => auth()->user()->id
         ]);
+
 
         return redirect()->route('post.index', auth()->user()->username);
     }

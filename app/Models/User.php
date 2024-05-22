@@ -48,4 +48,9 @@ class User extends Authenticatable
     //     'created_at', 'updated_at', // Agrega cualquier otro campo de fecha
     // ];
 
+    public function posts(){
+        //esto quiere decir que un usuario puede tenenr multiples post
+        return $this->hasMany(Post::class);
+    }
+
 }

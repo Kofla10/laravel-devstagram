@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
@@ -16,4 +16,9 @@ class Post extends Model
         'imagen',
         'user_id'
     ];
+
+    public function user(){
+        //esto quiere decir que un post pertenece a un usuario
+        $this->belongsTo(User::class)->select(['name', 'username']);
+    }
 }

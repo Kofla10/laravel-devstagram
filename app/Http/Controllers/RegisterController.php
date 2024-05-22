@@ -35,7 +35,7 @@ class RegisterController extends Controller
             'username' => 'required|min:3|max:15|unique:users',
             'email'    => 'required|email|max:45|unique:users|email',
             // si se poner confirmed, lo que hace que la contraseña de confirmacion sea igual al password
-            'password' => ['required', 'confirmed', 'min:6'],
+            'password' => ['required', 'confirmed', 'min:1'],
         ]);
 
 
@@ -59,7 +59,7 @@ class RegisterController extends Controller
         auth()->attempt($request->only('email', 'password'));
 
         //Hacemos que se redireccione a la ruta del muro
-        return redirect()->route('post.index');
+        return redirect()->route('post.index', auth()->user()->username);
 
     }
 }
