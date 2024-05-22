@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImagenController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -33,6 +34,8 @@ Route::get('/{user:username}', [PostController::class, 'index'])->name('post.ind
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/posts', [PostController::class, 'store'])->name('post.store');
 Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('post.show');
-Route::post('/comment', [PostController::class, 'comment'])->name('post.comment');
 
 Route::post('/imagens', [ImagenController::class, 'store'])->name('imagens.store');
+
+
+Route::post('/{user:username}/posts/{post}', [CommentController::class, 'store'])->name('comment.add');

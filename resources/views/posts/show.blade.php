@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('title')
+
      {{ $post->title }}
 @endsection
 
 @section('content')
 
-    <div class="container mx-auto flex">
+    <div class="container mx-auto md:flex">
         <div class="md:w-1/2">
             <div class="">
                 <img src = "{{ asset('uploads').'/'.$post->imagen }}" alt = "{{ $post->title }}">
@@ -33,7 +34,7 @@
                             Añadir un nuevo comentario
                         </p>
 
-                        <form action="{{route('post.comment')}}" method="POST" novalidate>
+                        <form action="{{ route('comment.add', [$user, $post]) }}" method="POST" novalidate>
                             @csrf
 
                             @if (session('mensaje') )
