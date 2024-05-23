@@ -21,7 +21,7 @@
                     0 <span class="font-normal">Siguiendo</span>
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
-                    0 <span class="font-normal">Publicaciones</span>
+                    {{ $posts->count() }} <span class="font-normal">Publicaciones</span>
                 </p>
             </div>
         </div>
@@ -34,14 +34,14 @@
         </h2>
 
         @if ($posts->count())
-        
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                
+
                  @foreach ($posts as $post)
 
                     <a href="{{ route('post.show', [$user, $post]) }}">
                         <img src="{{ asset('uploads').'/'.$post->imagen }}" alt="{{ $post->title }}">
-                    </a> 
+                    </a>
                 @endforeach
             </div>
             <div class=" mt-4 font-bold text-black">

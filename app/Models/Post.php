@@ -26,4 +26,14 @@ class Post extends Model
         //Quiere decier que un post puede tener varios comentarios
         return $this->hasMany(Comment::class);
     }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
+    //funcion que usa el contains, para validar que si un id esta en la tabla
+    public function checkLikes(User $user){
+        //En este caso podemos validar si el usuario esta registrado en la tabla like, lo usamos con la relación de like que creamos anteriormente
+        return $this->likes->contains('user_id', $user->id);
+    }
 }

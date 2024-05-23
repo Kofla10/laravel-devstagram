@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogouthController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,11 @@ Route::get('/{user:username}', [PostController::class, 'index'])->name('post.ind
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/posts', [PostController::class, 'store'])->name('post.store');
 Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('post.show');
+Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
 
 Route::post('/imagens', [ImagenController::class, 'store'])->name('imagens.store');
 
-
 Route::post('/{user:username}/posts/{post}', [CommentController::class, 'store'])->name('comment.add');
+
+Route::post('/like/{post}', [LikeController::class, 'store'])->name('like.post');
+Route::delete('/like/{post}', [LikeController::class, 'destroy'])->name('delete.like');

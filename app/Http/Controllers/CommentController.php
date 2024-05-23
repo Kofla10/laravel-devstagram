@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -14,7 +13,7 @@ class CommentController extends Controller
     //     $this->middleware('auth'); //con el metodo except() quitamos los proteción a los metodos que le pasemos, en este caso no es necesario estar logueados para ver el metodo de show
     // }
 
-    public function store(Request $data, User $user, Post $post){
+    public function store(Request $data, Post $post){
 
 
         $data->validate([
