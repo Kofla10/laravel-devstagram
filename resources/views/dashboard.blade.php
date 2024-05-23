@@ -34,22 +34,25 @@
         </h2>
 
         @if ($posts->count())
+        
             <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                
                  @foreach ($posts as $post)
-                    <a href="{{ route('post.show', ['user'=>$user, 'post' $post]) }}">
+
+                    <a href="{{ route('post.show', [$user, $post]) }}">
                         <img src="{{ asset('uploads').'/'.$post->imagen }}" alt="{{ $post->title }}">
-                    </a>
+                    </a> 
                 @endforeach
             </div>
             <div class=" mt-4 font-bold text-black">
-            {{ $posts->links() }}
+                {{ $posts->links() }}
             </div>
 
-            @else
+        @else
 
                 <p  class="font-bold text-center text-sm uppercase shadow-gray-200 text-gray-500">No hay publicaciones disponibles</p>
 
-            @endif
+        @endif
 
     </section>
 

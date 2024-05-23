@@ -33,13 +33,12 @@
                         <p class="text-xl font-bold text-center mb-4">
                             Añadir un nuevo comentario
                         </p>
+                        @if (session('mensaje') )
+                                <p class="text-green-400 text-center text-lg font-semibold"> {{ session('mensaje') }} </p>
+                            @endif
 
                         <form action="{{ route('comment.add', [$user, $post]) }}" method="POST" novalidate>
                             @csrf
-
-                            @if (session('mensaje') )
-                                <p class="text-red-500 text-center font-semibold"> {{ session('mensaje') }} </p>
-                            @endif
 
                             <div class="mb-5">
 
@@ -66,6 +65,20 @@
                                 class="p-2 mt-2 bg-sky-600 hover:bg-sky-700 uppercase font-bold w-full text-white rounded-2xl transition-colors cursor-pointer">
                         </form>
                     @endauth
+
+                    <div class="mt-5 bg-white shadow mb-5 max-96 overflow-y-scroll rounded-sm">
+                        @if ($post->comments)
+                            @foreach ($post->comments as $comment)
+                                <div class="p-5 border-gray-300 border-b ">
+                                    <p class="">{{ $comment->comment }} </p>
+                                    <p class="text-sm text-gray-500">{{ $comment->created_at->diffForHumans() }}</p>
+                                </div>
+                            @endforeach
+                        @else
+                        <p>No hay comentarios</p>
+                        @endif
+
+                    </div>
                 </div>
 
 
