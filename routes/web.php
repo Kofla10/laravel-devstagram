@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FolloweController;
 use App\Http\Controllers\LogouthController;
 use App\Http\Controllers\RegisterController;
 
@@ -48,4 +49,7 @@ Route::post('/{user:username}/posts/{post}', [CommentController::class, 'store']
 
 Route::post('/like/{post}', [LikeController::class, 'store'])->name('like.post');
 Route::delete('/like/{post}', [LikeController::class, 'destroy'])->name('delete.like');
+
+Route::post('/flollow', [FolloweController::class, 'store'])->name('followe');
+Route::delete('/flollow', [FolloweController::class, 'destroy'])->name('delete.follower');
 

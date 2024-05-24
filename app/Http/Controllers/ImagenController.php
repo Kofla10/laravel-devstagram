@@ -10,6 +10,7 @@ class ImagenController extends Controller
 {
     public function store(Request $data){
 
+        
         // $input = $data->all();
         $imagen  = $data->file('file');
 

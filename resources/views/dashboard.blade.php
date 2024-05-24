@@ -9,13 +9,13 @@
     <div class="flex justify-center">
         <div class="w-full md:w-8/12 lg:w-6/12 flex flex-col items-center md:flex-row">
             <div class="sm:w-8/12 lg:w-6/12 px-5">
-                <img  src="{{ asset('imgs/usuario.svg') }}" alt="Users Image">
+                <img  src="{{ $user->imagen? asset('perfiles').'/'.$user->imagen  : asset('imgs/usuario.svg') }}" alt="Users Image">
             </div>
 
             <div class="w-8/12 lg:w-6/12 px-5 flex md:justify-center flex-col items-center py-10 md:py-10 md:items-start">
                 <div class="flex items-center gap-3">
                     <p class="text-gray700 text-2xl uppercase mb-3">{{ $user->name }}</p>
-                    
+
                     @auth
                         @if ($user->id === auth()->user()->id)
                             <a href="{{route('edit.perfil')}}" class="text-gray-500 hover:text-gray-800 cursor-pointer">
@@ -36,6 +36,34 @@
                 <p class="text-gray-800 text-sm mb-3 font-bold">
                     {{ $posts->count() }} <span class="font-normal">Publicaciones</span>
                 </p>
+
+               @auth
+                @if (auth()->user()->id != $user->id)
+                    <div class="flex gap-2 items-center">
+                        <div>
+                            <form action="" method="POST">
+                                @csrf
+                                <input
+                                      type="submit"
+                                      class="bg-sky-600 text-white font-bold px-4 shadow-lg rounded-lg"
+                                      value="Seguir">
+                            </form>
+                        </div>
+                        <div>
+                            <form action="" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input
+                                      type="submit"
+                                      class="bg-gray-600 text-white font-bold px-4 shadow-lg rounded-lg"
+                                      value="Suiguiendo">
+
+                            </form>
+                        </div>
+                    </div>
+                @endif
+
+               @endauth
             </div>
         </div>
 
