@@ -1,13 +1,15 @@
 <?php
 
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\ImagenController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EditController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LogouthController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LikeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,9 @@ use App\Http\Controllers\LikeController;
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/edit-perfil', [EditController::class, 'index'])->name('edit.perfil');
+Route::post('/edit-perfil', [EditController::class, 'store'])->name('edit.store');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
@@ -43,3 +48,4 @@ Route::post('/{user:username}/posts/{post}', [CommentController::class, 'store']
 
 Route::post('/like/{post}', [LikeController::class, 'store'])->name('like.post');
 Route::delete('/like/{post}', [LikeController::class, 'destroy'])->name('delete.like');
+
