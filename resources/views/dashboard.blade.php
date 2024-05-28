@@ -28,10 +28,10 @@
 
                 </div>
                 <p class=" text-gray-800 text-sm mb-3 font-bold">
-                    0 <span class="font-normal">Seguidores</span>
+                    {{ $user->followers->count() }} <span class="font-normal"> @choice('Segidor|Seguidores', $user->followers->count() )</span>
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
-                    0 <span class="font-normal">Siguiendo</span>
+                    {} <span class="font-normal">Siguiendo</span>
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
                     {{ $posts->count() }} <span class="font-normal">Publicaciones</span>
@@ -40,8 +40,8 @@
                @auth
                 @if (auth()->user()->id != $user->id)
                     <div class="flex gap-2 items-center">
-
-                        @if($user->followers($user))
+                    {{-- {{ dd( $user->siguiendo( auth()->user()) ) }} --}}
+                        @if(!$user->siguiendo( auth()->user()))
                             <div>
                                 <form action="{{ route('follow', $user) }}" method="POST">
                                     @csrf
@@ -51,18 +51,19 @@
                                         value="Seguir">
                                 </form>
                             </div>
-                        @endif
-                        <div>
-                            <form action="{{ route('delete.follower') }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input
-                                      type="submit"
-                                      class="bg-gray-600 text-white font-bold px-4 shadow-lg rounded-lg"
-                                      value="Suiguiendo">
+                        @else
+                            <div>
+                                <form action="{{ route('delete.follower', $user) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input
+                                        type="submit"
+                                        class="bg-gray-600 text-white font-bold px-4 shadow-lg rounded-lg"
+                                        value="Suiguiendo">
 
-                            </form>
-                        </div>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 @endif
 

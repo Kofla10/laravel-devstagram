@@ -27,7 +27,8 @@ class FolloweController extends Controller
 
     public function destroy(User $user){
 
-        $user->followers()->where('follow', auth()->user()->id)->delete();
+        //usamos el metodo detach para eliminar la relación
+        $user->followers()->detach( auth()->user()->id );
 
         return back();
 

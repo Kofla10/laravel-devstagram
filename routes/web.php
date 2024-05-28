@@ -51,5 +51,5 @@ Route::post('/like/{post}', [LikeController::class, 'store'])->name('like.post')
 Route::delete('/like/{post}', [LikeController::class, 'destroy'])->name('delete.like');
 
 Route::post('/flollow/{user}', [FolloweController::class, 'store'])->name('follow');
-Route::delete('/flollow', [FolloweController::class, 'destroy'])->name('delete.follower');
+Route::delete('/flollow/{user}', [FolloweController::class, 'destroy'])->name('delete.follower');
 
