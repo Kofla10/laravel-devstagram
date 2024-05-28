@@ -10,7 +10,11 @@ class Followe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'users_id',
-        'follower_id'
+        'user_id',
+        'follow'
     ];
+
+    // public function user(){
+    //     return $this->hasMany(User::class);
+    // }
 }

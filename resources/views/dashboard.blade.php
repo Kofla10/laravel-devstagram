@@ -40,17 +40,20 @@
                @auth
                 @if (auth()->user()->id != $user->id)
                     <div class="flex gap-2 items-center">
+
+                        @if($user->followers($user))
+                            <div>
+                                <form action="{{ route('follow', $user) }}" method="POST">
+                                    @csrf
+                                    <input
+                                        type="submit"
+                                        class="bg-sky-600 text-white font-bold px-4 shadow-lg rounded-lg"
+                                        value="Seguir">
+                                </form>
+                            </div>
+                        @endif
                         <div>
-                            <form action="" method="POST">
-                                @csrf
-                                <input
-                                      type="submit"
-                                      class="bg-sky-600 text-white font-bold px-4 shadow-lg rounded-lg"
-                                      value="Seguir">
-                            </form>
-                        </div>
-                        <div>
-                            <form action="" method="POST">
+                            <form action="{{ route('delete.follower') }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <input
