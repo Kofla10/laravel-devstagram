@@ -24,7 +24,7 @@ class PostController extends Controller
 
         //usamos el paginate(cantidad) para poder realizar la paginación de los elementos que vamos a mostrar
         // $posts = Post::where('user_id', $user->id)->simplePaginate(6);
-        $posts = Post::where('user_id', $user->id)->paginate(12);
+        $posts = Post::where('user_id', $user->id)->latest()->paginate(12);
         return view('dashboard',[
             'user'  => $user,
             'posts' => $posts

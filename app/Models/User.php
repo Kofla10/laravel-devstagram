@@ -68,6 +68,12 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'followes', 'user_id', 'follow');
     }
 
+    //nos sirve para realizar el conteo de las personas a las que seguimios
+    public function following(){
+        //es para ver a los seguidores mios
+        return $this->belongsToMany(User::class, 'followes', 'follow', 'user_id');
+    }
+
     public function checkFollow(User $user){
         //en este caso podemos usar la función creada anteriormente
         return $this->followers->contains('follow', $user->id );

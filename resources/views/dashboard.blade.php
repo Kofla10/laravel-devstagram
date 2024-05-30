@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Perfil: {{$user->username}} 
+    Perfil: {{$user->username}}
 @endsection
 
 @section('content')
@@ -31,7 +31,7 @@
                     {{ $user->followers->count() }} <span class="font-normal"> @choice('Segidor|Seguidores', $user->followers->count() )</span>
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
-                    {} <span class="font-normal">Siguiendo</span>
+                    {{ $user->following->count() }} <span class="font-normal">Siguiendo</span>
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
                     {{ $posts->count() }} <span class="font-normal">Publicaciones</span>
