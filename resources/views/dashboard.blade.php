@@ -78,7 +78,7 @@
             Publicaciones
         </h2>
 
-        @if ($posts->count())
+        {{-- @if ($posts->count())
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
@@ -97,7 +97,10 @@
 
                 <p  class="font-bold text-center text-sm uppercase shadow-gray-200 text-gray-500">No hay publicaciones disponibles</p>
 
-        @endif
+        @endif --}}
+
+        {{-- para no usar todo el código anterior, usamos el componente, para reutilizar código --}}
+        <x-list-post :posts="$posts" />
 
     </section>
 

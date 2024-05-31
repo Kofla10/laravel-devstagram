@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(auth());
+        $this->middleware('auth');
     }
     //usamos el __invoke cuando usamos un solo metodo, que se refiere a autoinvocable, automaticamente se manda a llamar, no es necesario usar el index
     public function __invoke(){
@@ -22,9 +22,10 @@ class HomeController extends Controller
         // dd(auth()->user()->following->pluck('id')->toArray()); //usamos pluck para especificar que campos queremos, de arreglos que se tiene
 
         $ids = auth()->user()->following->pluck('id')->toArray();
-        
+
         //usamos lastest() para ordenar por ultima publicación
         $post = Post::whereIn('user_id', $ids)->latest()->paginate(20);
+        // dd($post);
 
         return view('home', [
             'posts' => $post
